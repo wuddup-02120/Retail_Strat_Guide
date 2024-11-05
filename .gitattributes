@@ -1,0 +1,2 @@
+AAPL_full_1min_UNADJUSTED.txt filter=lfs diff=lfs merge=lfs -text
+AAPL_2012_onward_1min_UNADJUSTED.txt filter=lfs diff=lfs merge=lfs -text
