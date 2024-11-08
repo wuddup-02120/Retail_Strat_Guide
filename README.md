@@ -72,7 +72,7 @@ This step ensures that anomalous pre-market data that could skew backtest result
 
 - **`backtest.py`**: A Python script for running the backtest on the AAPL dataset. The script is universally structured so that users can easily set file paths, start dates, and parameter levels to customize the backtest.
 - **`process_bollinger.py`**: A Python script for data cleaning using Bollinger Bands to filter out non-tradable pre-market candles.
-- **`AAPL_full_1min_UNADJUSTED.txt`**: A 1-minute interval time series dataset for AAPL (from January 1, 2012, onward), managed with Git LFS due to its size. The dataset includes columns for `datetime`, `open`, `high`, `low`, `close`, and `volume`.
+- **`AAPL_full_1min_UNADJUSTED.txt`**: A 1-minute interval time series dataset for AAPL (from January 1, 2012, onward) and 50 other popular securities, managed with Git LFS due to its size. The dataset includes columns for `datetime`, `open`, `high`, `low`, `close`, and `volume`.
 
 ---
 
