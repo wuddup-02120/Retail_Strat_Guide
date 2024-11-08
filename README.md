@@ -1,6 +1,6 @@
 # Retail Strat Guide
 
-Welcome to the **Retail Strat Guide** repository! This guide will walk you through setting up and running a trading strategy backtest on various securities' historical price data. The repository includes a universal Python backtesting script and an AAPL 1-minute time series dataset managed through Git LFS (Git Large File Storage). This guide is designed to be accessible even for those new to programming.
+Welcome to the **Retail Strat Guide** repository! This guide will walk you through setting up and running a trading strategy backtest on various securities' historical price data. The repository includes a universal Python backtesting script and 51 different securities' 1-minute time series dataset managed through Git LFS (Git Large File Storage). This guide is designed to be accessible even for those new to programming.
 
 ---
 
