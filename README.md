@@ -59,7 +59,7 @@ Bollinger Bands are used to detect candles that are likely due to overnight clea
    - Compute a 50-period moving average with bands set at 3 standard deviations above and below the average.
 
 2. **Filter Specific Time Range**:
-   - Focus on pre-market data between 8:00 AM and 9:00 AM.
+   - Focus on pre-market data between 8:00 AM and 8:30 AM.
 
 3. **Identify Non-Tradable Candles**:
    - Highlight and remove candles where the high price exceeds the upper band or the low price falls below the lower band.
