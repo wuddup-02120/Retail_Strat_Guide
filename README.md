@@ -1,4 +1,3 @@
-
 # Retail Strat Guide
 
 Welcome to the **Retail Strat Guide** repository! This guide will walk you through setting up and running a trading strategy backtest on AAPL (Apple Inc.) historical price data. The repository includes a universal Python backtesting script and an AAPL 1-minute time series dataset managed through Git LFS (Git Large File Storage). This guide is designed to be accessible even for those new to programming.
@@ -9,6 +8,7 @@ Welcome to the **Retail Strat Guide** repository! This guide will walk you throu
 
 - [Project Overview](#project-overview)
 - [Trading Strategy](#trading-strategy)
+- [Data Cleaning with Bollinger Bands](#data-cleaning-with-bollinger-bands)
 - [Repository Contents](#repository-contents)
 - [Setup and Installation](#setup-and-installation)
   - [Step 1: Clone the Repository](#step-1-clone-the-repository)
@@ -45,11 +45,33 @@ The strategy uses the following logic:
 
 The strategy tests various combinations of drawdown and stop-loss levels for each signal, storing results to analyze what levels may provide the best returns.
 
+## Data Cleaning with Bollinger Bands
+
+To enhance the quality of data used in backtesting, this repository includes a data cleaning step that leverages Bollinger Bands to identify and filter non-tradable candles, particularly those in the pre-market period.
+
+### Purpose of the Data Cleaning Step
+
+Bollinger Bands are used to detect candles that are likely due to overnight clearing orders processed through dark pools and similar mechanisms. These candles, often appearing in pre-market data, may not represent significant, tradable price swings and are therefore excluded from analysis.
+
+### Logic of the Data Cleaning Step
+
+1. **Calculate Bollinger Bands**:
+   - Compute a 50-period moving average with bands set at 3 standard deviations above and below the average.
+
+2. **Filter Specific Time Range**:
+   - Focus on pre-market data between 8:00 AM and 9:00 AM.
+
+3. **Identify Non-Tradable Candles**:
+   - Highlight and remove candles where the high price exceeds the upper band or the low price falls below the lower band.
+
+This step ensures that anomalous pre-market data that could skew backtest results is appropriately managed.
+
 ---
 
 ## Repository Contents
 
 - **`backtest.py`**: A Python script for running the backtest on the AAPL dataset. The script is universally structured so that users can easily set file paths, start dates, and parameter levels to customize the backtest.
+- **`process_bollinger.py`**: A Python script for data cleaning using Bollinger Bands to filter out non-tradable pre-market candles.
 - **`AAPL_full_1min_UNADJUSTED.txt`**: A 1-minute interval time series dataset for AAPL (from January 1, 2012, onward), managed with Git LFS due to its size. The dataset includes columns for `datetime`, `open`, `high`, `low`, `close`, and `volume`.
 
 ---
@@ -87,7 +109,7 @@ The script requires the `pandas` library for data processing. Install it by runn
 ### Step 3: Run the Backtest
 
 1. **Open `backtest.py` in a text editor** (like VS Code or Notepad++).
-   
+
 2. **Set file paths** in the script:
    - `input_file`: Path to the dataset (`AAPL_full_1min_UNADJUSTED.txt`).
    - `output_file`: Desired path for the output CSV (e.g., `backtest_trade_details.csv`).
@@ -175,3 +197,4 @@ This project is open for educational purposes. If you modify or build upon this 
 ---
 
 This README provides comprehensive instructions, explanations, and troubleshooting to make it easy for anyone, even without programming experience, to replicate and understand the backtest process. Happy backtesting!
+
