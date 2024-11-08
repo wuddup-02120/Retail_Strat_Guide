@@ -1,6 +1,6 @@
 # Retail Strat Guide
 
-Welcome to the **Retail Strat Guide** repository! This guide will walk you through setting up and running a trading strategy backtest on AAPL (Apple Inc.) historical price data. The repository includes a universal Python backtesting script and an AAPL 1-minute time series dataset managed through Git LFS (Git Large File Storage). This guide is designed to be accessible even for those new to programming.
+Welcome to the **Retail Strat Guide** repository! This guide will walk you through setting up and running a trading strategy backtest on various securities' historical price data. The repository includes a universal Python backtesting script and an AAPL 1-minute time series dataset managed through Git LFS (Git Large File Storage). This guide is designed to be accessible even for those new to programming.
 
 ---
 
@@ -22,7 +22,7 @@ Welcome to the **Retail Strat Guide** repository! This guide will walk you throu
 
 ## Project Overview
 
-This repository is designed to help users backtest a quantitative trading strategy on Apple Inc. (AAPL) 1-minute historical data. A backtest allows you to simulate trades using historical data to see how a strategy might have performed in the past. The strategy focuses on detecting specific trading signals and tracking entries and exits based on configurable drawdown and stop-loss levels.
+This repository is designed to help users backtest a quantitative trading strategy on securities' 1-minute historical data. A backtest allows you to simulate trades using historical data to see how a strategy might have performed in the past. The strategy focuses on detecting specific trading signals and tracking entries and exits based on configurable drawdown and stop-loss levels.
 
 ## Trading Strategy
 
