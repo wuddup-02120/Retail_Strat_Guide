@@ -185,6 +185,136 @@ Each section of the script includes comments to guide users on modifying paramet
 
 ---
 
+# Forex Data Stream and Scalping Bot
+
+## Overview
+This script connects to Interactive Brokers' Trader Workstation (TWS) or IB Gateway using the Interactive Brokers API (IBAPI). It streams real-time Forex data for specified currency pairs, implements a simple scalping strategy, and places buy/sell limit orders based on defined criteria.
+
+## Features
+- Connects to the Interactive Brokers trading platform.
+- Streams real-time bar data for specified Forex pairs.
+- Implements a basic scalping strategy:
+  - Buys on dips and sells on peaks.
+  - Manages entry and exit conditions based on price movements and elapsed time.
+- Places and manages limit orders.
+
+## Requirements
+### Software
+- Python 3.8+
+- Interactive Brokers TWS or IB Gateway running and accessible.
+- IBAPI Python SDK installed.
+
+### Python Libraries
+Ensure the following libraries are installed:
+- `ibapi` (provided by Interactive Brokers)
+- `datetime` (standard Python library)
+- `pytz` (for timezone handling)
+- `time` (standard Python library)
+
+You can install `pytz` using pip:
+```bash
+pip install pytz
+```
+
+### Account
+- A valid Interactive Brokers account.
+- An active connection to TWS or IB Gateway on port 7497 (default for TWS) or port 4001 (default for IB Gateway).
+
+### Permissions
+- Ensure your account has the necessary permissions to trade Forex (FX).
+- API trading must be enabled in your account settings.
+
+## Script Structure
+### Key Components
+1. **Forexdatastream Class**:
+   - Inherits `EWrapper` and `EClient` from the IBAPI to handle API callbacks and client functionality.
+   - Manages real-time data streaming, price analysis, and order placement.
+
+2. **Methods**:
+   - `nextValidId`: Retrieves the next valid order ID.
+   - `setup_contracts`: Configures the currency pairs to stream.
+   - `realtimeBar`: Processes incoming real-time bar data.
+   - `check_scalping_strategy`: Implements the scalping strategy logic.
+   - `check_exit_conditions`: Checks if exit conditions are met.
+   - `place_order`: Places buy/sell limit orders.
+
+3. **Main Execution**:
+   - Instantiates the `Forexdatastream` class.
+   - Connects to TWS or IB Gateway.
+   - Starts the IBAPI client loop.
+
+### Scalping Strategy Logic
+- **Entry Conditions**:
+  - Buy when prices show an upward trend after a dip.
+  - Sell when prices show a downward trend after a peak.
+
+- **Exit Conditions**:
+  - Exit positions when the price reaches a favorable level or after 60 seconds.
+
+## How to Run the Script
+### Setup
+1. Install TWS or IB Gateway and log in.
+2. Enable API connections in TWS/IB Gateway settings.
+3. Verify the port number for API connections (default: 7497 for TWS).
+
+### Configuration
+- Update the `userid` variable with a valid unique ID for the session.
+- Modify `self.pairs_to_stream` in the `setup_contracts` method to include desired currency pairs (default: `USDJPY`).
+
+### Execution
+Run the script with:
+```bash
+python <script_name>.py
+```
+Replace `<script_name>.py` with the actual filename.
+
+### Stopping the Script
+To stop the script, use `Ctrl+C`. The script will handle this interruption gracefully.
+
+## Example Output
+- On connection:
+  ```
+  Next valid order ID: 1
+  Streaming data for USDJPY with request ID 10000
+  ```
+
+- On receiving real-time data:
+  ```
+  Received bar data for Ticker: USDJPY, Time: 2024-11-13 10:15:00-05:00, Open: 110.25, High: 110.30, Low: 110.20, Close: 110.28
+  ```
+
+- On placing an order:
+  ```
+  Placed BUY limit order for 100000 of USDJPY at 110.28 with order ID 1 at 2024-11-13 10:15:00-05:00
+  ```
+
+- On exiting a position:
+  ```
+  Exited long position for USDJPY at 110.35
+  ```
+
+## Troubleshooting
+1. **Connection Issues**:
+   - Ensure TWS or IB Gateway is running and API connections are enabled.
+   - Verify the correct host (`127.0.0.1`) and port (`7497` for TWS, `4001` for IB Gateway).
+
+2. **Order Placement Issues**:
+   - Check for sufficient account permissions.
+   - Ensure the account has enough margin for Forex trades.
+
+3. **Data Streaming Issues**:
+   - Verify the currency pairs are valid and supported by Interactive Brokers.
+   - Ensure the account has real-time data subscriptions.
+
+## Notes
+- This script is intended for educational purposes. Use it with caution in live trading environments.
+- Test thoroughly using Interactive Brokers' paper trading account.
+- Adjust tick size, quantity, and time intervals to suit your trading strategy and account settings.
+
+## References
+- [Interactive Brokers API Documentation](https://interactivebrokers.github.io/tws-api/)
+- [Python IBAPI Reference Guide](https://interactivebrokers.github.io/tws-api/py/index.html)
+
 ## Additional Resources
 
 - [Git LFS Documentation](https://git-lfs.github.com/) for handling large files.
